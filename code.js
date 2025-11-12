@@ -23,6 +23,8 @@ setQuestion();
 //Vastauksen käsittely
 function answer(e){
     e.preventDefault();
+    
+    document.querySelector('button').disabled = true;
 
     //Haetaan pelaajan vastaus
     let fData = new FormData(form);
@@ -58,11 +60,15 @@ function setQuestion(){
         form.classList.add('hidden');
         result.textContent = 
               'Peli päättyi. Sait ' + points + '/'+ answers.length + ' pistettä.';
+        sessionStorage.setItem('yleistieto', points);
+        
     }else{
         question.textContent = questions[index];
         let labels = document.querySelectorAll('label');
         labels[0].textContent = answers[index][0]; 
         labels[1].textContent = answers[index][1]; 
         labels[2].textContent = answers[index][2]; 
+       
     }
+    document.querySelector('button').disabled = false;
 }
