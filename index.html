@@ -9,23 +9,11 @@
 </head>
 <body>
     <form>
-        <select name="country" id="country">
-            <option value="fin">Finland</option>
-            <option value="swe">Sweden</option>
-            <option value="nor">Norway</option><br>
-        </select>
-        <br>
-        <label>First name: </label><input type="text" name="fname">
-        <br>
-        <label>Last name: </label><input type="text" name="lname">
-        <br>
-        <input checked type="radio" name="opinion" value="yes"><label>Yes</label><br>
-        <input type="radio" name="opinion" value="no"><label>No</label><br>
-        <input type="radio" name="opinion" value="maybe"><label>Maybe</label><br>
-        <input checked type="checkbox" name="java" id="java" value="java">
+        <h3 id="question"></h3>
+        <input type="radio" name="answer" id="yes" value="yes" checked><label>Yes</label><br>
+        <input type="radio" name="answer" id="no" value="no"><label>No</label><br>
         <button type="submit">OK</button>
-        
     </form>
-
+    <h3 id="result"></h3>
 </body>
 </html>

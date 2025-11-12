@@ -1,24 +1,44 @@
-document.querySelector('form').addEventListener('submit', submitForm);
+let index = 0;
+let points = 0;
+let questions = [
+    'Onko html vaikeaa?', 
+    'Onko sanna Marin Suomen presidentti?',
+    'Lasi tehdään hiekasta'
+];
+let answers = ['no', 'no', 'yes'];
 
-function submitForm(event) {
-    event.preventDefault();
+let result = document.querySelector('#result');
+let form = document.querySelector('form');
+form.addEventListener('submit', answer);
 
-    let form = event.currentTarget;
-    let formData = new FormData(form);
+setQuestion();
 
-    let country = formData.get('country');
-    let fname = formData.get('fname');
-    let lname = formData.get('lname');
-    let opinion = formData.get('opinion');
-    let java = formData.get('java');
+function answer(e){
+    e.preventDefault();
 
-    console.log("Country is " + country);
-    console.log("Your name is " + fname + " " + lname);
-    console.log("Opinion is " + opinion);
-    if(java){
-        console.log('Java valittu!!');
+    //Haetaan pelaajan vastaus
+    let fData = new FormData(form);
+    let a = fData.get('answer');
+
+    //Onko vastaus oikea
+    if(answers[index] == a){
+        points++;
     }
-    
-    //Nollataan formin kentät
-    form.reset();
+
+    //Näytetään kokonaistulos
+    result.textContent = 
+        'Sinulla on pisteitä ' + points + '/'+answers.length;
+
+    index++;
+    setQuestion();
+}
+
+function setQuestion(){
+    if(index > questions.length-1){
+        form.classList.add('hidden');
+        result.textContent = 
+              'Peli päättyi. Sait ' + points + '/'+ answers.length + ' pistettä.';
+    }else{
+        document.querySelector('#question').textContent = questions[index];
+    }
 }
